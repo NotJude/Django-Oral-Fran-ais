@@ -32,31 +32,31 @@ def add(request):
     # ajouter un texte et des mouvements 
     
     if request.method == 'POST': 
-        print(1)
+        #print(1)
         tform = TexteForm(request.POST)
         mformslist = [(MouvementForm(request.POST),LigneInlineFormSet(request.POST, request.FILES)) for _ in range(6)]
         lformset = LigneInlineFormSet(request.POST, request.FILES)
-        print(2)
+        #print(2)
         if tform.is_valid():
             new_texte = tform.save()
-            print(3)
+            #print(3)
             for mf, lformset in mformslist:
 
                 new_mvt = mf.save(commit=False)
-                print(4)
-                print(new_mvt.title)
+                #print(4)
+                #print(new_mvt.title)
                 if new_mvt.title + new_mvt.range != '':
                     
-                    print(5)
+                    #print(5)
                     new_mvt.texte = new_texte
                     new_mvt.save()
                     if lformset.is_valid():
-                        print(6)
+                        #print(6)
                         for lf in lformset:
                             new_ligne = lf.save(commit=False)
-                            print(7)
+                            #print(7)
                             if new_ligne.citation + new_ligne.outil + new_ligne.analyse !='':
-                                print(8)
+                                #print(8)
                                 new_ligne.mouvement = new_mvt
                                 new_ligne.save()
             '''
@@ -77,25 +77,6 @@ def add(request):
     return render(request, 'Presentation/add.html', {'tform':tform, 'mformslist':mformslist, 'lformset':lformset})
 
 
-
-def add_mvt(request, key):
-
-
-
-    if request.method == 'POST': 
-        formset = MouvementInlineFormSet(request.POST, request.FILES, queryset=mouvements)
-        for form in formset:
-            if form.is_valid():
-                new_mvt = form.save(commit=False)
-                new_mvt.texte = texte
-                if new_mvt.title != '' and new_mvt.range != '':
-                    new_mvt.save()
-
-        return redirect('Presentation:index')
-    
-    else:
-        formset = MouvementInlineFormSet(queryset=mouvements)
-        return render(request, 'Presentation/add_mvt.html', {'formset' : formset})
 
 
 def add_author(request):
