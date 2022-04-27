@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ texte.title }}</title>
+    <style>
+        table,th,td{border:1px solid #cccccc}
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Introduction</h1>
+        <div class="authors_life">
+            <p>Naissance : {{ texte.auteur.birth_date | date:"Y" }}</p>
+        </div>
+        <div class="presentation">
+            {{ texte.presentation }}
+        </div>
+        <div class="lecture">LECTURE</div>
+        <div class="mouvements">
+            <h3>Mouvements ({{mouvements|length}})</h3>
+            <ul>
+                {% for m in mouvements %}
+                    <li>{{m.range}} : <strong>{{m.title}}</strong></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="problematique">
+            {{ texte.problematique }}
+        </div>
+    </div>
+
+    {% for m in mouvements %}
+        <div class="mvt {{forloop.counter}}">
+            <h1>Mouvement {{forloop.counter}} : {{m.title}} ({{m.range}})</h1>
+            <table>
+                <tr>
+                    <th>Citation</th>
+                    <th>Outil</th>
+                    <th>Analyse</th>
+                </tr>
+                {% for l in m.ligne_set.all %}
+                    <tr>
+                        <td>{{l.citation}}</td>
+                        <td>{{l.outil}}</td>
+                        <td>{{l.analyse}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
+
+    <div>
+        <h1>Conclusion</h1>
+        <p>{{texte.texte_conclusion}}</p>
+        <p>Ouverture : {{texte.ouverture}}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rechercher un texte</title>
+</head>
+<body>
+    <a href="{% url 'Presentation:add' %}">Ajouter un texte</a>
+    <div class="filter">
+        <form method="get">
+            
+            {{ myFilter.form }}
+
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+        {% if textes %}
+            {% for t in textes%}
+                <a href="{% url 'Presentation:texte' t.url %}">{{ t.title }}</a>  
+                <br>
+                {% endfor %}
+        {% else %}
+            <p>Aucun texte ne correspond à votre recherche...</p>
+        {% endif %}
+</body>
+</html>
