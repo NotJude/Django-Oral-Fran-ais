@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from .views import index, texte, add, add_author
+from .views import index, texte, add_author
 
 
 app_name = 'Presentation'
