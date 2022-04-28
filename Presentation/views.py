@@ -27,7 +27,7 @@ def texte(request, key):
         }
     return render(request, 'Presentation/texte.html', context)
 
-
+'''
 def add(request):
     # ajouter un texte et des mouvements 
     
@@ -59,13 +59,13 @@ def add(request):
                                 #print(8)
                                 new_ligne.mouvement = new_mvt
                                 new_ligne.save()
-            '''
+            
             new_text = tform.save()
             for mform in mformslist:
                 new_mvt = mform.save(commit=False)
                 if new_mvt.title + new_mvt.range != '':
                     new_mvt.texte = new_text
-                    new_mvt.save()'''
+                    new_mvt.save()
                 
             return redirect('Presentation:texte', key=tform.instance.url)
     
@@ -75,7 +75,7 @@ def add(request):
         lformset = LigneInlineFormSet()
     #            modifier la template 
     return render(request, 'Presentation/add.html', {'tform':tform, 'mformslist':mformslist, 'lformset':lformset})
-
+'''
 
 
 
