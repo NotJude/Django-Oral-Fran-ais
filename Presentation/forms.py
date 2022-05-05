@@ -31,7 +31,7 @@ class AuteurForm(ModelForm):
 
 # The formset for editing the Ligne that belong to a Mouvement.
 LigneFormset = inlineformset_factory(
-    Ligne, Mouvement, exclude=('child', ), extra=4
+    Mouvement, Ligne, exclude=('child', ), extra=4
 )
 
 
