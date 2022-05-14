@@ -1,7 +1,7 @@
 
 from django.db import models
-from django.utils.crypto import get_random_string
-
+# from django.utils.crypto import get_random_string
+import uuid
 
 class Auteur(models.Model):
     name = models.CharField(max_length=50)
@@ -14,12 +14,10 @@ class Auteur(models.Model):
 
 
 class Texte(models.Model):
-    url = models.CharField(
-            max_length = 10,
-            blank=True,
-            editable=False,
+    url = models.UUIDField(
+            default=uuid.uuid4,
             unique=True,
-            default=get_random_string(6)
+            editable=False
         )
     title = models.CharField(max_length=50, blank=True)
     auteur = models.ForeignKey(Auteur, on_delete=models.CASCADE, null=True)

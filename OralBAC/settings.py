@@ -15,10 +15,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['oralbacfrancaisdjango.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -73,14 +73,11 @@ WSGI_APPLICATION = 'OralBAC.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'FRANCAISDATABASE',
-        'USER': 'judegautier',
-        'PASSWORD': '%WBGLD32mf4Hi5rh*',
-        'HOST': 'judegautier.cvpcpk8cykpr.us-east-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation
