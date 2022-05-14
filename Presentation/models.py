@@ -43,9 +43,9 @@ class Mouvement(models.Model):
 
 class Ligne(models.Model):
     mouvement = models.ForeignKey(Mouvement, on_delete=models.CASCADE, null=True)
-    citation = models.CharField(max_length=250, blank=True)
-    outil = models.CharField(max_length=250, blank=True)
-    analyse = models.CharField(max_length=250, blank=True)
+    citation = models.CharField(max_length=250, blank=True, null=True)
+    outil = models.CharField(max_length=250, blank=True, null=True)
+    analyse = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
         return str(self.mouvement) + str(self.pk)
