@@ -18,8 +18,8 @@ class TextAdmin(admin.ModelAdmin):
 class MouvementAdmin(admin.ModelAdmin):
     inlines = (LigneInline, )
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
 
 admin.site.register(Auteur)
 admin.site.register(Texte, TextAdmin)
