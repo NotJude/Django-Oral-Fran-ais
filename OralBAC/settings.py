@@ -25,6 +25,7 @@ ALLOWED_HOSTS = ['oralbacfrancaisdjango.herokuapp.com', '127.0.0.1'] #2
 
 #3
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'Presentation.apps.PresentationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -113,8 +115,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfi')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/staticfiles/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'OralBAC/static'),
@@ -132,6 +134,5 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'myproject.storage.S3Storage'
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 django_heroku.settings(locals())
