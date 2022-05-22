@@ -48,3 +48,10 @@ def add_author(request):
     context = {'form' : form}
 
     return render(request, 'Presentation/add_author.html', context)
+
+
+"""
+postgres://wbkyadcsvbxuxo:c0bc16d253c36491e54421aced963b00f47a953be77985bf31b8b4904334ba6f@ec2-34-201-95-176.compute-1.amazonaws.com:5432/d1vr5hrp4stq7p
+postgres://wbkyadcsvbxuxo:c0bc16d253c36491e54421aced963b00f47a953be77985bf31b8b4904334ba6f@ec2-34-201-95-176.compute-1.amazonaws.com:5432/d1vr5hrp4stq7p
+
+"""
